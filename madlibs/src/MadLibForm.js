@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 const MadLibForm = () => {
   const [formData, setFormData] = useState(null);
   const handleChange = (e) => {
@@ -10,12 +12,18 @@ const MadLibForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // TODO: pass in fn as prop to form to process form data
     setFormData(null);
   };
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="noun1">Noun</label>
       <input required id="noun1" type="text" name="noun1" placeholder="Noun" />
+      <br />
+      <input required id="noun2" type="text" name="noun2" placeholder="Noun" />
+      <br />
+      <input required id="color" type="text" name="color" placeholder="Color" />
+      <br />
+      <button>See my story!</button>
     </form>
   );
 };

@@ -3,7 +3,12 @@ import MadLibStory from "./MadLibStory";
 import MadLibForm from "./MadLibForm";
 
 const MadLib = () => {
-  return;
+  return (
+    <>
+      <h1>MadLibs</h1>
+      <MadLibForm />
+    </>
+  );
 };
 
 export default MadLib;
