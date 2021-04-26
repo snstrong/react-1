@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 
-const MadLibForm = () => {
-  const [formData, setFormData] = useState(null);
+const MadLibForm = ({ createStory, submitted }) => {
+  const INITIAL_STATE = {
+    noun1: "",
+    noun2: "",
+    color: "",
+    adjective: "",
+  };
+  const [formData, setFormData] = useState(INITIAL_STATE);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((formData) => ({
@@ -12,16 +18,47 @@ const MadLibForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: pass in fn as prop to form to process form data
-    setFormData(null);
+    // call fn passed in as prop to process form data
+    createStory({ ...formData });
+    setFormData(INITIAL_STATE);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input required id="noun1" type="text" name="noun1" placeholder="Noun" />
+    <form className={submitted ? "hidden" : null} onSubmit={handleSubmit}>
+      <input
+        required
+        id="noun1"
+        type="text"
+        name="noun1"
+        placeholder="Noun"
+        onChange={handleChange}
+      />
       <br />
-      <input required id="noun2" type="text" name="noun2" placeholder="Noun" />
+      <input
+        required
+        id="noun2"
+        type="text"
+        name="noun2"
+        placeholder="Noun"
+        onChange={handleChange}
+      />
       <br />
-      <input required id="color" type="text" name="color" placeholder="Color" />
+      <input
+        required
+        id="color"
+        type="text"
+        name="color"
+        placeholder="Color"
+        onChange={handleChange}
+      />
+      <br />
+      <input
+        required
+        id="adjective"
+        type="text"
+        name="adjective"
+        placeholder="Adjective"
+        onChange={handleChange}
+      />
       <br />
       <button>See my story!</button>
     </form>
